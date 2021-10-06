@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">CRUD Firebase</string>
+    <array name="category">
+        <item>Samsung</item>
+        <item>Oppo</item>
+        <item>Xiaomi</item>
+        <item>Realme</item>
+        <item>Iphone</item>
+    </array>
 </resources>
