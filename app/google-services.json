@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "764908303521",
+    "firebase_url": "https://tugas-akhir-2d6a7-default-rtdb.firebaseio.com",
+    "project_id": "tugas-akhir-2d6a7",
+    "storage_bucket": "tugas-akhir-2d6a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764908303521:android:19fdb4eb0c64139ef2ace0",
+        "android_client_info": {
+          "package_name": "com.nursationugroho.crudfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764908303521-f0tr2g33d0ghcmur16rso85jetr5sks7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATqCXgoADBpfzzChZz43A9LUC9aJ6ZK3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764908303521-f0tr2g33d0ghcmur16rso85jetr5sks7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764908303521:android:0b0f29fbefc059daf2ace0",
+        "android_client_info": {
+          "package_name": "com.nursationugroho.tugasakhir"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764908303521-f0tr2g33d0ghcmur16rso85jetr5sks7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATqCXgoADBpfzzChZz43A9LUC9aJ6ZK3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764908303521-f0tr2g33d0ghcmur16rso85jetr5sks7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
