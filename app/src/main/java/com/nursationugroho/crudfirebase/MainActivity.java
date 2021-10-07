@@ -1,10 +1,12 @@
 package com.nursationugroho.crudfirebase;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -18,6 +20,7 @@ import com.nursationugroho.crudfirebase.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private MainViewModel viewModel;
+    public Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this, new BarangVMFactory(actionListener)).get(MainViewModel.class);
 
         binding.btAdd.setOnClickListener(this::onViewClicked);
+        binding.ivBarang.setOnClickListener(this::onViewClicked);
     }
 
     public boolean validasidata() {
@@ -36,12 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void pushData() {
         viewModel.pushData(binding.etNamaBarang.getText().toString(),
-                binding.etHargaBarang.getText().toString(),
-                binding.etDeskripsiBarang.getText().toString());
-    }
-
-    public void pushPhoto() {
-
+                "Rp. "+binding.etHargaBarang.getText().toString(),
+                binding.etDeskripsiBarang.getText().toString(),
+                binding.category.getSelectedItem().toString());
     }
 
     private void onViewClicked(View view) {
@@ -54,8 +55,24 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.ivBarang:
-                pushPhoto();
+                pilihPhoto();
                 break;
+        }
+    }
+
+    private void pilihPhoto() {
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(i, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK && data!=null && data.getData()!=null) {
+            imageUri = data.getData();
+            binding.ivBarang.setImageURI(imageUri);
         }
     }
 

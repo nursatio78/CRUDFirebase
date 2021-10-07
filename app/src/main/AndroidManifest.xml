@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CRUDFirebase">
         <activity
+            android:name=".UploadActivity"
+            android:exported="true" />
+        <activity
             android:name=".BarangActivity"
             android:exported="true" />
         <activity

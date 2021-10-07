@@ -27,13 +27,16 @@ public class MainViewModel extends ViewModel {
         this.myRef = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void pushData(String namaBarang, String hargaBarang, String deskripsiBarang) {
-        myRef = FirebaseDatabase.getInstance().getReference().child("barang");
+    public void pushData(String namaBarang, String hargaBarang, String deskripsiBarang, String kategori) {
+        String modelId = myRef.getKey();
+        assert modelId != null;
+        myRef = FirebaseDatabase.getInstance().getReference("Barang").child(modelId);
 
         Map<String, Object> barangHashMap = new HashMap<>();
         barangHashMap.put("namaBarang", namaBarang);
         barangHashMap.put("hargaBarang", hargaBarang);
         barangHashMap.put("deskripsiBarang", deskripsiBarang);
+        barangHashMap.put("kategori", kategori);
 
         myRef.updateChildren(barangHashMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -46,9 +49,5 @@ public class MainViewModel extends ViewModel {
                         }
                     }
                 });
-    }
-
-    public void pushPhoto(String photo) {
-        myRef = FirebaseDatabase.getInstance().getReference().child("barang");
     }
 }
