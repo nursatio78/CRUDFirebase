@@ -1,5 +1,6 @@
 package com.nursationugroho.crudfirebase;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -12,10 +13,21 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.nursationugroho.crudfirebase.callback.ActionListener;
 import com.nursationugroho.crudfirebase.databinding.ActivityMainBinding;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -30,19 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
         binding.btAdd.setOnClickListener(this::onViewClicked);
         binding.ivBarang.setOnClickListener(this::onViewClicked);
+        binding.btShow.setOnClickListener(this::onViewClicked);
     }
 
     public boolean validasidata() {
         return !TextUtils.isEmpty(binding.etNamaBarang.getText().toString()) &&
                 !TextUtils.isEmpty(binding.etHargaBarang.getText().toString()) &&
                 !TextUtils.isEmpty(binding.etDeskripsiBarang.getText().toString());
-    }
-
-    public void pushData() {
-        viewModel.pushData(binding.etNamaBarang.getText().toString(),
-                "Rp. "+binding.etHargaBarang.getText().toString(),
-                binding.etDeskripsiBarang.getText().toString(),
-                binding.category.getSelectedItem().toString());
     }
 
     private void onViewClicked(View view) {
@@ -54,8 +60,13 @@ public class MainActivity extends AppCompatActivity {
                     Snackbar.make(binding.getRoot(), "Isian harus diisi!", BaseTransientBottomBar.LENGTH_LONG).setAnchorView(R.id.btAdd).show();
                 }
                 break;
+
             case R.id.ivBarang:
                 pilihPhoto();
+                break;
+
+            case R.id.btShow:
+                startActivity(new Intent(MainActivity.this, BarangActivity.class));
                 break;
         }
     }
@@ -76,6 +87,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void pushData() {
+        viewModel.pushData(binding.etNamaBarang.getText().toString(),
+                "Rp. "+binding.etHargaBarang.getText().toString(),
+                binding.etDeskripsiBarang.getText().toString(),
+                binding.category.getSelectedItem().toString(),
+                imageUri);
+    }
+
     private ActionListener actionListener = new ActionListener() {
         @Override
         public void onStart() {
@@ -89,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
             binding.btAdd.setEnabled(true);
             new Handler().postDelayed(() -> {
                 startActivity(new Intent(MainActivity.this, BarangActivity.class));
-                finishAffinity();
             },1000);
         }
 

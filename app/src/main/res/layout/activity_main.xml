@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
-        android:layout_gravity="center"
         tools:context=".MainActivity">
 
         <EditText
@@ -32,7 +31,7 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/editbox_bg"
             android:hint="Deskripsi"
@@ -61,6 +60,15 @@
             android:id="@+id/btAdd"
             android:text="add"
             style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_marginTop="8dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btShow"
+            android:text="show all"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/teal_200"
             android:layout_marginTop="8dp"/>
 
     </LinearLayout>
